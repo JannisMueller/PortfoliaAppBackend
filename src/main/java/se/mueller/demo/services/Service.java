@@ -9,4 +9,6 @@ public interface Service {
 
     List<Asset> getAllAssets();
 
+    Asset addAsset(Asset asset);
+
 }

@@ -19,4 +19,11 @@ public class AssetService implements Service{
     public List<Asset> getAllAssets() {
         return repository.findAll();
     }
+
+    @Override
+    public Asset addAsset(Asset asset) {
+        return repository.save(asset);
+    }
 }
+
+
