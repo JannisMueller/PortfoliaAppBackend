@@ -1,13 +1,12 @@
 package se.mueller.demo.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import se.mueller.demo.entity.Asset;
-import se.mueller.demo.repository.AssetRepository;
+import se.mueller.demo.entity.CurrentValue;
 import se.mueller.demo.services.AssetService;
-import se.mueller.demo.services.Service;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:5050/assets")
 
 @RestController
@@ -28,6 +27,16 @@ public class AssetController {
     @PostMapping("/assets")
     Asset addAsset(@RequestBody Asset asset) {
         return service.addAsset(asset);
+    }
+    @PatchMapping("/assets/{id}")
+    Asset updateAsset(@RequestBody CurrentValue currentValue, @PathVariable Long id){
+
+        return service.updateAsset(currentValue, id);
+    }
+
+    @DeleteMapping("/assets/{id}")
+    public void delete(@PathVariable Long id){
+        service.delete(id);
     }
 }
 
