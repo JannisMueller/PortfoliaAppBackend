@@ -2,7 +2,7 @@ package se.mueller.demo.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import se.mueller.demo.entity.Asset;
-import se.mueller.demo.entity.CurrentValue;
+import se.mueller.demo.entity.UpdatedAsset;
 import se.mueller.demo.services.AssetService;
 
 import java.util.List;
@@ -29,9 +29,9 @@ public class AssetController {
         return service.addAsset(asset);
     }
     @PatchMapping("/assets/{id}")
-    Asset updateAsset(@RequestBody CurrentValue currentValue, @PathVariable Long id){
+    Asset updateAsset(@RequestBody UpdatedAsset updatedAsset, @PathVariable Long id){
 
-        return service.updateAsset(currentValue, id);
+        return service.updateAsset(updatedAsset, id);
     }
 
     @DeleteMapping("/assets/{id}")

@@ -1,12 +1,10 @@
 package se.mueller.demo.entity;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="assets")
+@Table(name="portfolio")
 public class Asset {
 
     @Id
@@ -23,14 +21,17 @@ public class Asset {
     private double currentValue;
     @Column(name="gain")
     private double gain;
+    @Column(name="bucket")
+    private String bucket;
 
-    public Asset(Long id, String nameOfAsset, String typeOfAsset, double initialValue, double currentValue) {
+    public Asset(long id, String nameOfAsset, String typeOfAsset, double initialValue, double currentValue, double gain, String bucket) {
         this.id = id;
         this.nameOfAsset = nameOfAsset;
         this.typeOfAsset = typeOfAsset;
         this.initialValue = initialValue;
         this.currentValue = currentValue;
-        this.gain = currentValue - initialValue;
+        this.gain = gain;
+        this.bucket = bucket;
     }
 
     public Asset() {
@@ -85,15 +86,24 @@ public class Asset {
         this.gain = gain;
     }
 
+    public String getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
     @Override
     public String toString() {
-        return "Assets{" +
+        return "Asset{" +
                 "id=" + id +
                 ", nameOfAsset='" + nameOfAsset + '\'' +
                 ", typeOfAsset='" + typeOfAsset + '\'' +
                 ", initialValue=" + initialValue +
                 ", currentValue=" + currentValue +
                 ", gain=" + gain +
+                ", bucket='" + bucket + '\'' +
                 '}';
     }
 }

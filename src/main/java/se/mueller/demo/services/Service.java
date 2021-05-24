@@ -2,7 +2,7 @@ package se.mueller.demo.services;
 
 
 import se.mueller.demo.entity.Asset;
-import se.mueller.demo.entity.CurrentValue;
+import se.mueller.demo.entity.UpdatedAsset;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface Service {
 
     Asset addAsset(Asset asset);
 
-    Asset updateAsset(CurrentValue currentValue , Long id);
+    Asset updateAsset(UpdatedAsset updatedAsset, Long id);
 
     void delete (Long id);
 

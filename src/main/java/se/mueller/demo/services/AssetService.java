@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import se.mueller.demo.entity.Asset;
-import se.mueller.demo.entity.CurrentValue;
+import se.mueller.demo.entity.UpdatedAsset;
 import se.mueller.demo.repository.AssetRepository;
 
 import java.util.List;
@@ -30,12 +30,14 @@ public class AssetService implements Service{
     }
 
     @Override
-    public Asset updateAsset(CurrentValue currentValue , Long id) {
+    public Asset updateAsset(UpdatedAsset updatedAsset, Long id) {
         Optional<Asset> asset = repository.findById(id);
         if (asset.isPresent()) {
             Asset assetThatWillBeUpdated = asset.get();
 
-            assetThatWillBeUpdated.setCurrentValue(currentValue.currentValue);
+            assetThatWillBeUpdated.setCurrentValue(updatedAsset.currentValue);
+            assetThatWillBeUpdated.setGain(updatedAsset.gain);
+
 
             return repository.save(assetThatWillBeUpdated);
         } else {
