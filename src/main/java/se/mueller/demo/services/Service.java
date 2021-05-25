@@ -18,6 +18,8 @@ public interface Service {
 
     void delete (Long id);
 
+    void deleteMetric(Long id);
+
     List<KeyMetricAsset> getAllMetrics();
     KeyMetricAsset addMetric (KeyMetricAsset keyMetricAsset);
 

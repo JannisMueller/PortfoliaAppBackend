@@ -22,9 +22,12 @@ public class Asset {
     @Column(name="gain")
     private double gain;
     @Column(name="bucket")
-    private String bucket;
+    private int bucket;
 
-    public Asset(long id, String nameOfAsset, String typeOfAsset, double initialValue, double currentValue, double gain, String bucket) {
+    public Asset() {
+    }
+
+    public Asset(long id, String nameOfAsset, String typeOfAsset, double initialValue, double currentValue, double gain, int bucket) {
         this.id = id;
         this.nameOfAsset = nameOfAsset;
         this.typeOfAsset = typeOfAsset;
@@ -32,10 +35,6 @@ public class Asset {
         this.currentValue = currentValue;
         this.gain = gain;
         this.bucket = bucket;
-    }
-
-    public Asset() {
-
     }
 
     public long getId() {
@@ -86,11 +85,11 @@ public class Asset {
         this.gain = gain;
     }
 
-    public String getBucket() {
+    public int getBucket() {
         return bucket;
     }
 
-    public void setBucket(String bucket) {
+    public void setBucket(int bucket) {
         this.bucket = bucket;
     }
 
@@ -103,7 +102,7 @@ public class Asset {
                 ", initialValue=" + initialValue +
                 ", currentValue=" + currentValue +
                 ", gain=" + gain +
-                ", bucket='" + bucket + '\'' +
+                ", bucket=" + bucket +
                 '}';
     }
 }

@@ -48,5 +48,10 @@ public class AssetController {
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
+
+   @DeleteMapping("/metrics/{id}")
+    public void deleteMetrics(@PathVariable Long id){
+        service.deleteMetric(id);
+    }
 }
 

@@ -56,6 +56,10 @@ public class AssetService implements Service{
     }
 
     @Override
+    public void deleteMetric(Long id) {
+        ketMetricAssetRepository.deleteById(id);
+    }
+    @Override
     public List<KeyMetricAsset> getAllMetrics() {
         return ketMetricAssetRepository.findAll();
     }
