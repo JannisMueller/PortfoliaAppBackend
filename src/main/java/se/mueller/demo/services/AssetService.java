@@ -4,8 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import se.mueller.demo.entity.Asset;
+import se.mueller.demo.entity.KeyMetricAsset;
 import se.mueller.demo.entity.UpdatedAsset;
 import se.mueller.demo.repository.AssetRepository;
+import se.mueller.demo.repository.KetMetricAssetRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +16,11 @@ import java.util.Optional;
 public class AssetService implements Service{
 
     private final AssetRepository repository;
+    private final KetMetricAssetRepository ketMetricAssetRepository;
 
-    public AssetService(AssetRepository repository) {
+    public AssetService(AssetRepository repository, KetMetricAssetRepository ketMetricAssetRepository) {
         this.repository = repository;
+        this.ketMetricAssetRepository = ketMetricAssetRepository;
     }
 
     @Override
@@ -50,6 +54,18 @@ public class AssetService implements Service{
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<KeyMetricAsset> getAllMetrics() {
+        return ketMetricAssetRepository.findAll();
+    }
+
+    @Override
+    public KeyMetricAsset addMetric(KeyMetricAsset keyMetricAsset) {
+        return ketMetricAssetRepository.save(keyMetricAsset);
+    }
 }
+
+
 
 

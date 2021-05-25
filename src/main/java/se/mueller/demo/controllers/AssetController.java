@@ -2,12 +2,14 @@ package se.mueller.demo.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import se.mueller.demo.entity.Asset;
+import se.mueller.demo.entity.KeyMetricAsset;
 import se.mueller.demo.entity.UpdatedAsset;
 import se.mueller.demo.services.AssetService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5050/assets")
+@CrossOrigin(origins =
+        {"http://localhost:5050/assets", "http://localhost:5050/metrics"})
 
 @RestController
 
@@ -22,6 +24,14 @@ public class AssetController {
     @GetMapping("/assets")
     List<Asset> findAll() {
         return service.getAllAssets();
+    }
+    @GetMapping("/metrics")
+    List<KeyMetricAsset> findAllMetrics() {
+        return service.getAllMetrics();
+    }
+    @PostMapping("/metrics")
+    KeyMetricAsset addMetric(@RequestBody KeyMetricAsset keyMetricAsset) {
+        return service.addMetric(keyMetricAsset);
     }
 
     @PostMapping("/assets")
