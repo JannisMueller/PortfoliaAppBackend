@@ -1,5 +1,6 @@
 package se.mueller.demo.services;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,11 +26,12 @@ public class AssetService implements Service{
 
     @Override
     public List<Asset> getAllAssets() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "currentValue"));
     }
 
     @Override
     public Asset addAsset(Asset asset) {
+
         return repository.save(asset);
     }
 
