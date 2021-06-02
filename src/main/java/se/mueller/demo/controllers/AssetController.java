@@ -1,15 +1,13 @@
 package se.mueller.demo.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import se.mueller.demo.entity.Asset;
-import se.mueller.demo.entity.KeyMetricAsset;
-import se.mueller.demo.entity.UpdatedAsset;
+import se.mueller.demo.entity.*;
 import se.mueller.demo.services.AssetService;
 
 import java.util.List;
 
 @CrossOrigin(origins =
-        {"http://localhost:5050/assets", "http://localhost:5050/metrics"})
+        {"http://localhost:5050/assets", "http://localhost:5050/metrics","http://localhost:5050/pension" })
 
 @RestController
 
@@ -29,6 +27,17 @@ public class AssetController {
     List<KeyMetricAsset> findAllMetrics() {
         return service.getAllMetrics();
     }
+
+    @GetMapping("/pension")
+    List<PensionAsset> findAllPensionAssets() {
+        return service.getAllPensionAssets();
+    }
+
+    @PostMapping("/pension")
+    PensionAsset addPensionAsset(@RequestBody PensionAsset pensionAsset) {
+        return service.addPensionAsset(pensionAsset);
+    }
+
     @PostMapping("/metrics")
     KeyMetricAsset addMetric(@RequestBody KeyMetricAsset keyMetricAsset) {
         return service.addMetric(keyMetricAsset);
@@ -40,9 +49,14 @@ public class AssetController {
     }
     @PatchMapping("/assets/{id}")
     Asset updateAsset(@RequestBody UpdatedAsset updatedAsset, @PathVariable Long id){
-
         return service.updateAsset(updatedAsset, id);
     }
+
+    @PatchMapping("/pension/{id}")
+    PensionAsset updatePensionAsset(@RequestBody UpdatedAssetPension updatedAssetPension, @PathVariable Long id){
+        return service.updatePensionAsset(updatedAssetPension, id);
+    }
+
 
     @DeleteMapping("/assets/{id}")
     public void delete(@PathVariable Long id){
@@ -52,6 +66,11 @@ public class AssetController {
    @DeleteMapping("/metrics/{id}")
     public void deleteMetrics(@PathVariable Long id){
         service.deleteMetric(id);
+    }
+
+    @DeleteMapping("/pension/{id}")
+    public void deletePensionAsset(@PathVariable Long id){
+        service.deletePensionAsset(id);
     }
 }
 

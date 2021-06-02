@@ -1,11 +1,20 @@
 package se.mueller.demo.entity;
 
 
+
+import jdk.jfr.Timestamp;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name="KeyMetricAssets")
+
 public class KeyMetricAsset {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +57,7 @@ public class KeyMetricAsset {
     public void setTotalValue(double totalValue) {
         this.totalValue = totalValue;
     }
+
 
     @Override
     public String toString() {

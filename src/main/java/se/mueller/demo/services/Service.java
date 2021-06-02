@@ -1,9 +1,7 @@
 package se.mueller.demo.services;
 
 
-import se.mueller.demo.entity.Asset;
-import se.mueller.demo.entity.KeyMetricAsset;
-import se.mueller.demo.entity.UpdatedAsset;
+import se.mueller.demo.entity.*;
 
 import java.util.List;
 
@@ -23,5 +21,15 @@ public interface Service {
     List<KeyMetricAsset> getAllMetrics();
 
     KeyMetricAsset addMetric (KeyMetricAsset keyMetricAsset);
+
+    List <PensionAsset> getAllPensionAssets();
+
+    PensionAsset addPensionAsset (PensionAsset pensionAsset);
+
+    PensionAsset updatePensionAsset (UpdatedAssetPension updatedAssetPension, Long id);
+
+    void deletePensionAsset(Long id);
+
+
 
 }
